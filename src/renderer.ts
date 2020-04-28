@@ -31,17 +31,17 @@ export class Renderer {
 
   async serialize(requestUrl: string, isMobile: boolean):
       Promise<SerializedResponse> {
-//     /**
-//      * Executed on the page after the page has loaded. Strips script and
-//      * import tags to prevent further loading of resources.
-//      */
-//     function stripPage() {
-//       // Strip only script tags that contain JavaScript (either no type attribute or one that contains "javascript")
-//       const elements = document.querySelectorAll('script:not([type]), script[type*="javascript"], link[rel=import]');
-//       for (const e of Array.from(elements)) {
-//         e.remove();
-//       }
-//     }
+    /**
+     * Executed on the page after the page has loaded. Strips script and
+     * import tags to prevent further loading of resources.
+     */
+    function stripPage() {
+      // Strip only script tags that contain JavaScript (either no type attribute or one that contains "javascript")
+      const elements = document.querySelectorAll('script:not([type]), script[type*="javascript"], link[rel=import]');
+      for (const e of Array.from(elements)) {
+        e.remove();
+      }
+    }
 
     /**
      * Injects a <base> tag which allows other resources to load. This
@@ -112,7 +112,7 @@ export class Renderer {
       await page.close();
       return {status: 403, customHeaders: new Map(), content: ''};
     }
-
+    
     // Set status to the initial server's response code. Check for a <meta
     // name="render:status_code" content="4xx" /> tag which overrides the status
     // code.
@@ -155,7 +155,7 @@ export class Renderer {
         .catch(() => undefined);
 
     // Remove script & import tags.
-    // await page.evaluate(stripPage);
+    await page.evaluate(stripPage);
         
     // Inject <base> tag with the origin of the request (ie. no path).
     const parsedUrl = url.parse(requestUrl);
