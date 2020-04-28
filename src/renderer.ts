@@ -31,17 +31,17 @@ export class Renderer {
 
   async serialize(requestUrl: string, isMobile: boolean):
       Promise<SerializedResponse> {
-    /**
-     * Executed on the page after the page has loaded. Strips script and
-     * import tags to prevent further loading of resources.
-     */
-    function stripPage() {
-      // Strip only script tags that contain JavaScript (either no type attribute or one that contains "javascript")
-      const elements = document.querySelectorAll('script:not([type]), script[type*="javascript"], link[rel=import]');
-      for (const e of Array.from(elements)) {
-        e.remove();
-      }
-    }
+//     /**
+//      * Executed on the page after the page has loaded. Strips script and
+//      * import tags to prevent further loading of resources.
+//      */
+//     function stripPage() {
+//       // Strip only script tags that contain JavaScript (either no type attribute or one that contains "javascript")
+//       const elements = document.querySelectorAll('script:not([type]), script[type*="javascript"], link[rel=import]');
+//       for (const e of Array.from(elements)) {
+//         e.remove();
+//       }
+//     }
 
     /**
      * Injects a <base> tag which allows other resources to load. This
